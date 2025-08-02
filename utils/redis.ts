@@ -8,5 +8,5 @@ const redisClient = () => {
     }
     throw new Error(" redis connection failed ");
 }
+export const redis = redisClient();
 
-export default redisClient;
