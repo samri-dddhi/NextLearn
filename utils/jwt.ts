@@ -42,6 +42,11 @@ export const sendToken = (
             accessTokenOptions.secure = true;
             refreshTokenOptions.secure = true;
         }
+console.log("AccessToken:", accessToken);
+console.log("RefreshToken:", refreshToken);
+console.log("Access Token Options:", accessTokenOptions);
+console.log("Refresh Token Options:", refreshTokenOptions);
+console.log("NODE_ENV:", process.env.NODE_ENV);
 
         res.cookie("accessToken", accessToken, accessTokenOptions);
         res.cookie("refreshToken", refreshToken, refreshTokenOptions);
