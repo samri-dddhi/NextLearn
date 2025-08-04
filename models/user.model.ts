@@ -1,7 +1,10 @@
 import mongoose, {Document , Model , Schema} from "mongoose";
 import bcrypt from "bcryptjs";
+import validator from "validator";
+require("dotenv").config();
+import jwt from "jsonwebtoken";
 
-const emailRegexPattern: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+// const emailRegexPattern: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 
 export interface IUser extends Document {
@@ -16,6 +19,8 @@ export interface IUser extends Document {
   isVerified: boolean;
   courses: Array<{courseId: string}>;
   comparePassword(password: string): Promise<boolean>;
+  SignAccessToken(): string;
+  SignRefreshToken(): string;
 };
 
 const userSchema: Schema<IUser> = new Schema({
@@ -24,18 +29,15 @@ const userSchema: Schema<IUser> = new Schema({
     required: [true, "Name is required"],
     trim: true
   },
-  email: {
-    type: String,
-    required: [true, "Email is required"],
-    validate: {
-        validator: function(v: string) {
-            return emailRegexPattern.test(v);
-        },
-        message: "Invalid email format"
+   email: {
+      type: String,
+      required: [true, "Email is required"],
+      unique: true,
+      validate: {
+        validator: (value: string) => validator.isEmail(value),
+        message: "Invalid email format",
+      },
     },
-    unique: true,
-   
-  },
   password: {
     type: String,
     required: [true, "Password is required"],
@@ -67,6 +69,14 @@ userSchema.pre<IUser>("save", async function(next) {
     this.password = await bcrypt.hash(this.password,10);
     next();
 });
+
+userSchema.methods.SignAccessToken = function() {
+  return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || '');
+};
+
+userSchema.methods.SignRefreshToken = function() {
+  return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || '');
+};
 
 userSchema.methods.comparePassword = async function(password: string): Promise<boolean> {
   return await bcrypt.compare(password, this.password);
