@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 
 const emailRegexPattern: RegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+
 export interface IUser extends Document {
   name: string;
   email: string;
@@ -42,8 +43,8 @@ const userSchema: Schema<IUser> = new Schema({
     select: false,
   },
   avatar: {
-    public_id: { type: String, required: [true, "Public ID is required"] },
-    url: { type: String, required: [true, "URL is required"] }
+    public_id: { type: String },
+    url: { type: String }
   },
   role: {
     type: String,
