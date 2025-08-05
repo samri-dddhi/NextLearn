@@ -148,13 +148,11 @@ export const loginUser = catchAsyncErrors(async (req: Request, res: Response, ne
         // const accessToken = user.SignAccessToken();
         // const refreshToken = user.SignRefreshToken();
 
-        // res.status(200).json({
-        //     success: true,
-        //     message: "Login successful",
-        //     accessToken,
-        //     refreshToken,
-        //     user
-        // });
+        res.status(200).json({
+            success: true,
+            message: "Login successful",
+            user
+        });
       
 
     } catch (error:any) {
@@ -164,10 +162,12 @@ export const loginUser = catchAsyncErrors(async (req: Request, res: Response, ne
 
 export const logoutUser = catchAsyncErrors(async (req: Request, res: Response, next: NextFunction) => {
     try {
-        res.cookie("access_token", "", { maxAge: 1 });
-        res.cookie("refresh_token", "", { maxAge: 1 });
-        const userId = req.user?.id || '';
-        await redis.del(userId);
+        
+        res.cookie("accessToken", "", { maxAge: 1 });
+        res.cookie("refreshToken", "", { maxAge: 1 });
+        const userId = req.user?.id || "";
+        console.log(req.user);
+        redis.del(userId);
 
         res.status(200).json({
             success: true,

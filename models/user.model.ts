@@ -71,17 +71,30 @@ userSchema.pre<IUser>("save", async function(next) {
 });
 
 userSchema.methods.SignAccessToken = function() {
-  return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || '');
+  return jwt.sign({ id: this.id }, process.env.ACCESS_TOKEN || '', );
 };
 
 userSchema.methods.SignRefreshToken = function() {
-  return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || '');
+  return jwt.sign({ id: this.id }, process.env.REFRESH_TOKEN || '');
 };
 
 userSchema.methods.comparePassword = async function(password: string): Promise<boolean> {
   return await bcrypt.compare(password, this.password);
 };
+userSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function (doc: any, ret: { _id: any; id?: string; password?: string }) {
+  ret.id = ret._id.toString();
+  delete ret._id;
+  delete ret.password;
+}
+
+});
+
 
 const userModel: Model<IUser> = mongoose.model<IUser>("User", userSchema);
+
+
 
 export default userModel;

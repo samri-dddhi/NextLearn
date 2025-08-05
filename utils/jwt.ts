@@ -25,15 +25,15 @@ export const sendToken = (
         || '1200', 10);
 
         const accessTokenOptions: ITokenOptions = {
-            expires: new Date(Date.now() + accessTokenExpire * 1000),
-            maxAge: accessTokenExpire * 1000,
+            expires: new Date(Date.now() + accessTokenExpire * 60 * 1000),
+            maxAge: accessTokenExpire * 60 * 1000,
             httpOnly: true,
             sameSite: 'lax',
         }
 
         const refreshTokenOptions: ITokenOptions = {
-            expires: new Date(Date.now() + refreshTokenExpire * 1000),
-            maxAge: refreshTokenExpire * 1000,
+            expires: new Date(Date.now() + refreshTokenExpire * 60 * 1000),
+            maxAge: refreshTokenExpire * 60 * 1000,
             httpOnly: true,
             sameSite: 'lax',
         }
@@ -42,11 +42,6 @@ export const sendToken = (
             accessTokenOptions.secure = true;
             refreshTokenOptions.secure = true;
         }
-console.log("AccessToken:", accessToken);
-console.log("RefreshToken:", refreshToken);
-console.log("Access Token Options:", accessTokenOptions);
-console.log("Refresh Token Options:", refreshTokenOptions);
-console.log("NODE_ENV:", process.env.NODE_ENV);
 
         res.cookie("accessToken", accessToken, accessTokenOptions);
         res.cookie("refreshToken", refreshToken, refreshTokenOptions);
