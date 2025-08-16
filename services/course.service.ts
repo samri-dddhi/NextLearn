@@ -1,6 +1,7 @@
 import {Response} from 'express';
 import CourseModel from '../models/course.model';
 import { catchAsyncErrors } from '../middleware/catchAsyncErrors';
+import userModel from '../models/user.model';
 
 // export const createCourse = catchAsyncErrors(
 //   async (req: Request, res: Response) => {
@@ -16,3 +17,11 @@ export const createCourse = async (data:any) => {
   const course = await CourseModel.create(data);
   return course;
 };
+
+export const getAllCoursesService = async (res: Response) => {
+    const courses = await CourseModel.find().sort({ createdAt: -1 });
+    res.status(201).json({
+        success: true,
+        courses,
+    });
+}

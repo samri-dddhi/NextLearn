@@ -47,3 +47,4 @@ cron.schedule("0 0 0 * * *", async () => {
   await NotificationModel.deleteMany({ status: "read", createdAt: { $lt: thirtyDaysAgo } });
   console.log("Deleted read notifications older than 30 days");
 }) ;
+
