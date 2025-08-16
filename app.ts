@@ -8,6 +8,7 @@ import userRouter from './routes/user.routes';
 import courseRouter from './routes/course.route';
 import orderRouter from './routes/order.route';
 import notificationRoute from './routes/notofication.route';
+import analyticsRouter from './routes/analytics.route';
 
 app.use(express.json({limit: '50mb'}));
 
@@ -18,7 +19,7 @@ app.use(cors({
   credentials:true
 }));
 
-app.use("/api/v1", userRouter, courseRouter, orderRouter, notificationRoute);
+app.use("/api/v1", userRouter, courseRouter, orderRouter, notificationRoute, analyticsRouter);
 
 // Uncomment the following lines if you want to add a test route or error handling
 app.get("/test", (req: Request, res: Response, next: NextFunction) => {
