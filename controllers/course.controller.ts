@@ -87,7 +87,7 @@ export const getSingleCourse = catchAsyncErrors(
           return next(new ErrorHandler("Course not found", 404));
         }
 
-        await redis.set(courseId, JSON.stringify(course));
+        await redis.set(courseId, JSON.stringify(course), 'EX', 60 * 60 * 24 * 7);
         //console.log('from mongodb');
 
         res.status(200).json({ success: true, course });
