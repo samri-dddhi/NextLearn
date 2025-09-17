@@ -88,30 +88,29 @@ import { BiSearch } from "react-icons/bi";
 
 const Hero: FC = () => {
   return (
-    <div className="w-full 1000px:flex items-center">
+    <div className="relative w-full 1000px:flex items-center">
       {/* Hero Image Section (left) */}
-     <div className="absolute top-[100px] 1000px:top-[unset] left-0 1500px:h-[560px] 1500px:w-[560px] 1100px:h-[470px] 1100px:w-[470px] w-[38vh] h-[38vh] hero_animation rounded-full" />
-      <div className="1000px:w-[40%] flex 1000px:min-h-screen items-center justify-end pt-[70px] 1000px:pt-[0] z-10">
+     {/* <div className="absolute top-[100px] 1000px:top-[unset] left-0 1500px:h-[560px] 1500px:w-[560px] 1100px:h-[470px] 1100px:w-[470px] w-[38vh] h-[38vh] hero_animation rounded-full" /> */}
+      <div className="1000px:w-[50%] 1000px:h-[70%] flex 1000px:min-h-screen items-center justify-end pt-[70px] 1000px:pt-[0] z-10 ">
         <Image
-          src="/hero-image.png" // your hero image
+          src="/hero-image.png" 
           alt="Hero"
-          width={700}
-          height={700}
-          className="object-contain 1100px:max-w-[90%] w-[90%] 1500px:max-w-[85%] h-auto z-"
+          width={800}
+          height={800}
+          className="object-contain max-w-full h-full z-10"
           priority
         />
       </div>
       {/* Hero Content (right) */}
       <div className="1000px:w-[60%] flex flex-col items-center 1000px:mt-0 text-center 1000px:text-left mt-[150px]">
         <h2 className="dark:text-white text-[#000000c7] text-[26px] px-3 w-full 1000px:text-[56px] font- font-Josefin py-2 1000px:leading-[62px] 1500px:w-[60%]">
-          Improve Your Online Learning Experience Better Instantly
+          Empowering Your Online Learning Experience
         </h2>
 
         <br />
 
         <p className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font- text-[16px] 1500px:!w-[55%] 1100px:!w-[78%]">
-          We have 40k+ online courses & 500k+ online registered student. Find
-          your desired courses from them.
+          Explore 40,000+ expert-led courses and join over 500,000 learners building their future. Discover your perfect course now!
         </p>
 
         <br />
@@ -137,26 +136,26 @@ const Hero: FC = () => {
           <Image
             src="/avatar1.jpg" // your avatar
             alt="Student 1"
-            width={50}
-            height={50}
-            className="rounded-full"
+            width={40}
+            height={40}
+            className="rounded-full aspect-square object-cover border-2 border-white shadow"
           />
           <Image
             src="/avatar2.jpg"
             alt="Student 2"
-            width={50}
-            height={50}
-            className="rounded-full ml-[-20px]"
+            width={40}
+            height={40}
+            className="rounded-full aspect-square object-cover border-2 border-white shadow ml-[-20px]"
           />
           <Image
             src="/avatar3.jpg"
             alt="Student 3"
-            width={50}
-            height={50}
-            className="rounded-full ml-[-20px]"
+            width={40}
+            height={40}
+            className="rounded-full aspect-square object-cover border-2 border-white shadow ml-[-20px]"
           />
           <p className="font-Josefin dark:text-[#edfff4] text-[#000000b3] 1000px:pl-3 text-[16px] font-">
-            500k+ People already trusted us.
+            Trusted by 500,000+ learners worldwide.
             <Link
               href="/courses"
               className="ml-1 dark:text-[#46e256] text-[crimson]"
@@ -173,3 +172,4 @@ const Hero: FC = () => {
 };
 
 export default Hero;
+
