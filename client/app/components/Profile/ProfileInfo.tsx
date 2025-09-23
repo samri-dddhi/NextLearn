@@ -139,7 +139,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-[80vh] py-8">
-      <div className="bg-[#111827] rounded-xl p-8 flex flex-col md:flex-row items-center md:items-start gap-10 shadow-lg">
+      <div className="dark:bg-[#111827] bg-white rounded-xl p-8 flex flex-col md:flex-row items-center md:items-start gap-10 shadow-lg">
         {/* Avatar + upload */}
         <div className="relative">
           <Image
@@ -170,7 +170,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
           className="w-[260px] md:w-[320px] flex flex-col gap-4"
         >
           <div>
-            <label className="block pb-1 text-sm text-gray-200">
+            <label className="block pb-1 text-sm text-black dark:text-[#fff]">
               Full Name
             </label>
             <input
@@ -182,7 +182,7 @@ const ProfileInfo: FC<Props> = ({ avatar, user }) => {
             />
           </div>
           <div>
-            <label className="block pb-1 text-sm text-gray-200">
+            <label className="block pb-1 text-sm text-black dark:text-[#fff]">
               Email Address
             </label>
             <input

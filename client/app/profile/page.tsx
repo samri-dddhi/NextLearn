@@ -17,7 +17,7 @@ const Page: FC<Props> = (props) => {
     <div>
         <Protected>
             <Heading
-    title={`${user?.name}'s Profile`}
+    title={`${user?.name}'s Profile - NextLearn`}
     description="NextLearn is a modern platform to master real-world skills through expert-led courses, interactive learning, and verifiable certificates."
     keywords='Programming, Web Development, Next.js, React, Courses, Learning, Skills'
   />
