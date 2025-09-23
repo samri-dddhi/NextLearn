@@ -266,7 +266,7 @@ export const updateUserInfo = catchAsyncErrors(async (req: Request, res: Respons
     console.log("Body received:", req.body);
     try {
         const body = req.body || {}; // fallback to avoid undefined destructure
-  const { name, email } = body as IUpdateUserInfo;
+  const { name} = body as IUpdateUserInfo;
 
   if (!name && !email) {
     return next(new ErrorHandler("No data provided", 400));
@@ -274,13 +274,13 @@ export const updateUserInfo = catchAsyncErrors(async (req: Request, res: Respons
         const userId = req.user?.id;
         const user = await userModel.findById(userId);
 
-        if(email && user){
-            const isEmailExist = await userModel.findOne({ email });
-            if (isEmailExist) {
-                return next(new ErrorHandler("Email already exists", 400));
-            }
-            user.email = email;
-        }
+        // if(email && user){
+        //     const isEmailExist = await userModel.findOne({ email });
+        //     if (isEmailExist) {
+        //         return next(new ErrorHandler("Email already exists", 400));
+        //     }
+        //     user.email = email;
+        // }
         if( name && user){
             user.name = name;
         }
