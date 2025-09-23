@@ -1,5 +1,6 @@
+import { LogOut } from 'lucide-react';
 import {apiSlice} from '../api/apiSlice';
-import {userLoggedIn, userRegistration} from './authSlice';
+import {userLoggedIn,userLoggedOut, userRegistration} from './authSlice';
 
 type RegistrationResponse = {
     message:string;
@@ -62,13 +63,50 @@ export const authApi = apiSlice.injectEndpoints({
                 }
             },
         }),
-        userLoggedOut: builder.mutation({
+        socialAuth: builder.mutation({
+            query: ({email, name, image}) => ({
+                url: 'social-auth',
+                method: 'POST',
+                body: { email, name, image },
+            credentials: 'include' as const,
+        }),
+            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(
+                        userLoggedIn({
+                            accessToken: result.data.accessToken,
+                            user: result.data.user,
+                        })
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+        }),
+         logOut: builder.query({
             query: () => ({
                 url: 'logout',
-                method: 'POST',
+                method: 'GET',
+                credentials: 'include' as const,
             }),
+            async onQueryStarted(arg, {dispatch, queryFulfilled}) {
+                try {
+                    dispatch(
+                        userLoggedOut()
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
+            },
         }),
+        // userLoggedOut: builder.mutation({
+        //     query: () => ({
+        //         url: 'logout',
+        //         method: 'POST',
+        //     }),
+        // }),
     }),
 });
 
-export const {useRegisterMutation, useActivationMutation, useUserLoggedInMutation} = authApi;
+export const {useRegisterMutation, useActivationMutation, useUserLoggedInMutation, useSocialAuthMutation, useLogOutQuery} = authApi;
