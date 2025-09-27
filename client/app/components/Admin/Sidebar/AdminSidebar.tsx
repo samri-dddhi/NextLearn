@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import {ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { Box, IconButton, Typography } from '@mui/material'
 import "react-pro-sidebar/dist/css/styles.css";
@@ -9,17 +9,17 @@ import {
   ArrowBackIosIcon,
   PeopleOutlinedIcon,
   ReceiptOutlinedIcon,
-BarChartOutlinedIcon,
-MapOutlinedIcon,
-GroupsIcon,
-OndemandVideoIcon,
-VideoCallIcon,
-WebIcon,
-QuizIcon,
-WysiwygIcon,
-ManageHistoryIcon,
-SettingsIcon,
-ExitToAppIcon,
+  BarChartOutlinedIcon,
+  MapOutlinedIcon,
+  GroupsIcon,
+  OndemandVideoIcon,
+  VideoCallIcon,
+  WebIcon,
+  QuizIcon,
+  WysiwygIcon,
+  ManageHistoryIcon,
+  SettingsIcon,
+  ExitToAppIcon,
 } from './Icon';
 import Link from 'next/link';
 import avatarDefault from '../../../../public/avatar.jpg'
@@ -42,7 +42,7 @@ const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography className='!text-[16px] !font-Poppins'>{title}</Typography>
+      <Typography className='!text-[16px] !font-Poppins !text-black dark:!text-white'>{title}</Typography>
       <Link href={to} />
     </MenuItem>
   );
@@ -175,105 +175,105 @@ const Sidebar = () => {
             <Item
               title="Users"
               to="/admin/users"
-              icon={<GroupsIcon />}
+              icon={<GroupsIcon className='text-black dark:text-white' />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Invoices"
               to="/admin/invoices"
-              icon={<ReceiptOutlinedIcon />}
+              icon={<ReceiptOutlinedIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
              <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
             >
               {!isCollapsed && "Content"}
             </Typography>
             <Item
               title="Create Course"
               to="/admin/create-course"
-              icon={<VideoCallIcon />}
+              icon={<VideoCallIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Live Courses"
               to="/admin/courses"
-              icon={<OndemandVideoIcon />}  
+              icon={<OndemandVideoIcon className='text-black dark:text-white' />}  
               selected={selected}
               setSelected={setSelected}
             />
               <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
             >
               {!isCollapsed && "Customization"}
             </Typography>
             <Item
               title="Hero"
               to="/admin/hero"
-              icon={<WebIcon />}
+              icon={<WebIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="FAQ"
               to="faq"
-              icon={<QuizIcon />}
+              icon={<QuizIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Categories"
               to="/admin/categories"
-              icon={<WysiwygIcon />}
+              icon={<WysiwygIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
               <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
             >
               {!isCollapsed && "Controllers"}
             </Typography>
             <Item
               title="Manage Team"
               to="/admin/team"
-              icon={<PeopleOutlinedIcon />}
+              icon={<PeopleOutlinedIcon className='text-black dark:text-white' />}
               selected={selected}
               setSelected={setSelected}
             />
               <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] text-black dark:text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
             >
               {!isCollapsed && "Analytics"}
             </Typography>
             <Item
               title="Courses Analytics"
               to="/admin/courses-analytics"
-              icon={<BarChartOutlinedIcon />}
+              icon={<BarChartOutlinedIcon className='text-black dark:text-white' />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Orders Analytics"
               to="/admin/orders-analytics"
-              icon={<MapOutlinedIcon />}
+              icon={<MapOutlinedIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Users Analytics"
               to="/admin/users-analytics"
-              icon={<ManageHistoryIcon />}
+              icon={<ManageHistoryIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
@@ -287,7 +287,7 @@ const Sidebar = () => {
             <Item
               title="Settings"
               to="/admin/settings"
-              icon={<SettingsIcon />}
+              icon={<SettingsIcon className='text-black dark:text-white'/>}
               selected={selected}
               setSelected={setSelected}
             />
@@ -295,7 +295,7 @@ const Sidebar = () => {
               <Item
                 title="Logout"
                 to="/"
-                icon={<ExitToAppIcon />}
+                icon={<ExitToAppIcon className='text-black dark:text-white'/>}
                 selected={selected}
                 setSelected={setSelected}
               />
