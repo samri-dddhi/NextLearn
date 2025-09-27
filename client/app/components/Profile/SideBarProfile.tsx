@@ -67,7 +67,7 @@ const SideBarProfile: FC<Props> = ({
         className={`w-full flex items-center px-3 py-4 cursor-pointer ${
           active === 6 ? "dark:bg-slate-800 bg-white" : "bg-transparent"
         } `}
-        href={"/admin/dashboard"}
+        href={"/admin"}
       >
         <MdOutlineAdminPanelSettings size={20} className="text-black dark:text-[#fff]" />
         <h5 className="pl-2 800px:block hidden font-Poppins dark:text-white text-black">
