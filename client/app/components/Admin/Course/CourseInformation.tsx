@@ -1,10 +1,216 @@
-import React from 'react'
+import React, { FC, useState } from "react";
+import { styles } from "@/app/styles/style";
 
-type Props = {}
+type Props = {
+  courseInfo: any;
+  setCourseInfo: (courseInfo: any) => void;
+  active: number;
+  setActive: (active: number) => void;
+};
 
-const CourseInformation = (props: Props) => {
+const CourseInformation: FC<Props> = ({
+  courseInfo,
+  setCourseInfo,
+  active,
+  setActive,
+}) => {
+  const [dragging, setDragging] = useState(false);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setActive(active + 1);
+  };
+  const handleFileChange = (e: any) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        if (reader.readyState === 2) {
+          setCourseInfo({ ...courseInfo, thumbnail: reader.result });
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+  const handleDragLeave = (e: any) => {
+    e.preventDefault();
+    setDragging(false);
+  };
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setCourseInfo({ ...courseInfo, thumbnail: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
-    <div>CourseInformation</div>
-  )
-}
-export default CourseInformation
+    <div className="w-[80%] m-auto mt-24">
+      <form onSubmit={handleSubmit} className={`${styles.label}`}>
+        <div>
+          <label htmlFor="courseName">Course Name</label>
+          <input
+            type="name"
+            name=""
+            required
+            id="name"
+            value={courseInfo.name}
+            onChange={(e) =>
+              setCourseInfo({ ...courseInfo, name: e.target.value })
+            }
+            placeholder="NextLearn - Learn Anything"
+            className={`${styles.input}`}
+          />
+        </div>
+        <br />
+        <div className="mb-5">
+          <label className={`${styles.label}`}>Course Description</label>
+          <textarea
+            name=""
+            id=""
+            cols={30}
+            rows={10}
+            value={courseInfo.description}
+            onChange={(e) =>
+              setCourseInfo({ ...courseInfo, description: e.target.value })
+            }
+            placeholder="Write something about your course..."
+            className={`${styles.input} !h-min !py-2`}
+          ></textarea>
+        </div>
+        <br />
+        <div className="w-full flex justify-between">
+          <div className="w-[45%]">
+            <label className={`${styles.label}`}>Course Price</label>
+            <input
+              type="number"
+              name=""
+              required
+              id="price"
+              value={courseInfo.price}
+              onChange={(e) =>
+                setCourseInfo({ ...courseInfo, price: e.target.value })
+              }
+              placeholder="30"
+              className={`${styles.input}`}
+            />
+          </div>
+          <div className="w-[45%]">
+            <label className={`${styles.label}`}>Estimated Price</label>
+            <input
+              type="number"
+              name=""
+              required
+              id="estimated-price"
+              value={courseInfo.estimatedPrice}
+              onChange={(e) =>
+                setCourseInfo({ ...courseInfo, estimatedPrice: e.target.value })
+              }
+              placeholder="70"
+              className={`${styles.input}`}
+            />
+          </div>
+        </div>
+        <br />
+        <div>
+          <label className={`${styles.label}`}>
+            Course Tags (separated by commas)
+          </label>
+          <input
+            type="text"
+            name=""
+            required
+            id="tags"
+            value={courseInfo.tags}
+            onChange={(e) =>
+              setCourseInfo({ ...courseInfo, tags: e.target.value })
+            }
+            placeholder="e.g. React, JavaScript"
+            className={`${styles.input}`}
+          />
+        </div>
+        <br />
+        <div className="w-full flex justify-between">
+          <div className="w-[45%]">
+            <label className={`${styles.label}`}>Course Level</label>
+            <input
+              type="text"
+              name=""
+              required
+              id="level"
+              value={courseInfo.level}
+              onChange={(e) =>
+                setCourseInfo({ ...courseInfo, level: e.target.value })
+              }
+              placeholder="e.g. Beginner"
+              className={`${styles.input}`}
+            />
+          </div>
+          <div className="w-[45%]">
+            <label className={`${styles.label}`}>Demo Video URL</label>
+            <input
+              type="text"
+              name=""
+              required
+              id="demo-video"
+              value={courseInfo.demoVideo}
+              onChange={(e) =>
+                setCourseInfo({ ...courseInfo, demoVideo: e.target.value })
+              }
+              placeholder="e.g. https://www.youtube.com/watch?v=12345"
+              className={`${styles.input}`}
+            />
+          </div>
+        </div>
+        <br />
+        <div className="w-full flex justify-between"></div>
+        <br />
+        <div className="w-full">
+          <input
+            type="file"
+            accept="image/*"
+            id="file"
+            className="hidden"
+            onChange={handleFileChange}
+          />
+          <label
+            htmlFor="file"
+            className={`w-full min-h-[10vh] dark:border-white border-[#00000026] p-3 border flex items-center justify-center ${dragging ? "bg-blue-500" : "bg-transparent"}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            {courseInfo.thumbnail ? (
+              <img
+                src={courseInfo.thumbnail}
+                alt="Course Thumbnail"
+                className="w-full max-h-full object-cover"
+              />
+            ) : (
+              <span className="text-[#0000007f] dark:text-white ">
+                Drag & Drop or Click to Upload Course Thumbnail
+              </span>
+            )}
+          </label>
+        </div>
+        <br />
+        <div className="w-full flex items-center justify-end">
+         <input type="submit" value="Next" className= 'w-full 800px:w-[180px]  h-[40px] bg-[#37a39a] text-center text-[#fff] rounded mt-8 cursor-pointer' />
+        </div>
+        <br />
+        <br />
+      </form>
+    </div>
+  );
+};
+export default CourseInformation;
