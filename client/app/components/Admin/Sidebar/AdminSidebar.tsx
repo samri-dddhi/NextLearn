@@ -42,7 +42,7 @@ const Item: FC<itemProps> = ({ title, to, icon, selected, setSelected }) => {
       onClick={() => setSelected(title)}
       icon={icon}
     >
-      <Typography className='!text-[16px] !font-Poppins !text-black dark:!text-white'>{title}</Typography>
+      <Typography className='!text-[17px] !font-Poppins !font-medium !text-black dark:!text-white'>{title}</Typography>
       <Link href={to} />
     </MenuItem>
   );
@@ -93,7 +93,8 @@ const Sidebar = () => {
         top: "0",
         left: "0",
         height: "100vh",
-        width: isCollapsed ? "0%" : "16%",
+        width: isCollapsed ? "60px" : "280px",
+        zIndex: 1000,
       }}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
@@ -112,7 +113,7 @@ const Sidebar = () => {
                 ml="15px"
                 >
                   <Link href="/">
-                  <h3 className='text-[20px] font-Poppins uppercase dark:text-white text-black '>
+                  <h3 className='text-[24px] font-Poppins font-bold uppercase dark:text-white text-black tracking-wide'>
                     NextLearn
                   </h3>
                   </Link>
@@ -142,17 +143,17 @@ const Sidebar = () => {
               <Box textAlign="center">
                 <Typography
                   variant="h4"
-                  className='!text-[20px] text-black dark:text-[#ffffffc1]'
+                  className='!text-[18px] !font-Poppins !font-semibold text-black dark:text-[#ffffffc1]'
                   sx={{ m: "10px 0 0 0" }}
                 >
                   {user.name}
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ m: "10px 0 0 0" }}
-                  className='!text-[20px] text-black dark:text-[#ffffffc1] capitalize'
+                  sx={{ m: "5px 0 0 0" }}
+                  className='!text-[14px] !font-Poppins !font-medium text-black dark:text-[#ffffffc1] capitalize opacity-80'
                 >
-                  - {user?.role}
+                  {user?.role}
                 </Typography>
               </Box>
             </Box>
@@ -168,7 +169,7 @@ const Sidebar = () => {
             <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] text-black dark:text-[#ffffffc1] font-Poppins capitalize'
+              className='!text-[15px] !text-gray-800 dark:!text-[#ffffffc1] font-Poppins font-semibold uppercase tracking-wider'
             >
          {!isCollapsed && "Data"}
             </Typography>
@@ -189,7 +190,7 @@ const Sidebar = () => {
              <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[15px] !text-gray-800 dark:!text-[#ffffffc1] font-Poppins font-semibold uppercase tracking-wider'
             >
               {!isCollapsed && "Content"}
             </Typography>
@@ -210,7 +211,7 @@ const Sidebar = () => {
               <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[15px] !text-gray-800 dark:!text-[#ffffffc1] font-Poppins font-semibold uppercase tracking-wider'
             >
               {!isCollapsed && "Customization"}
             </Typography>
@@ -238,7 +239,7 @@ const Sidebar = () => {
               <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[15px] !text-gray-800 dark:!text-[#ffffffc1] font-Poppins font-semibold uppercase tracking-wider'
             >
               {!isCollapsed && "Controllers"}
             </Typography>
@@ -252,7 +253,7 @@ const Sidebar = () => {
               <Typography
               variant="h5"
               sx={{ m: "15px 0 5px 25px" }}
-              className='!text-[18px] !text-gray-800 dark:!text-[#ffffffc1] capitalize !font-[400]'
+              className='!text-[15px] !text-gray-800 dark:!text-[#ffffffc1] font-Poppins font-semibold uppercase tracking-wider'
             >
               {!isCollapsed && "Analytics"}
             </Typography>
