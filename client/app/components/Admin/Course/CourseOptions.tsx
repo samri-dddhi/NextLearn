@@ -25,22 +25,22 @@ const CourseOptions: FC<Props> = ({ active, setActive }) => {
     {
       title: "Course Information",
       description: "Basic course details and settings",
-      icon: <MdInfo className="text-lg" />,
+      icon: <MdInfo className="text-base" />,
     },
     {
       title: "Course Options", 
       description: "Configure pricing and availability",
-      icon: <MdSettings className="text-lg" />,
-    },
-    {
-      title: "Course Preview",
-      description: "Set up course preview and thumbnail", 
-      icon: <MdPreview className="text-lg" />,
+      icon: <MdSettings className="text-base" />,
     },
     {
       title: "Course Content",
       description: "Add lessons, videos and materials",
-      icon: <MdPlayCircleOutline className="text-lg" />,
+      icon: <MdPlayCircleOutline className="text-base" />,
+    },
+    {
+      title: "Course Preview",
+      description: "Set up course preview and thumbnail", 
+      icon: <MdPreview className="text-base" />,
     },
   ];
 
@@ -58,7 +58,7 @@ const CourseOptions: FC<Props> = ({ active, setActive }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 h-[80vh] max-h-[80vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-100 dark:scrollbar-track-gray-800">
       <div className="mb-4">
-        <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
           Course Setup Progress
         </h3>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -135,7 +135,7 @@ const CourseOptions: FC<Props> = ({ active, setActive }) => {
                   }`}>
                     {option.icon}
                   </div>
-                  <h4 className={`font-medium text-base ${
+                  <h4 className={`font-medium text-sm ${
                     isStepActive(index)
                       ? "text-blue-900 dark:text-blue-100"
                       : isStepCompleted(index)
@@ -157,7 +157,7 @@ const CourseOptions: FC<Props> = ({ active, setActive }) => {
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500 dark:text-gray-400">
                   {option.description}
                 </p>
               </div>

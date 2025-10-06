@@ -10,6 +10,7 @@ import path from "path/win32";
 import ejs from "ejs";
 import sendMail from "../utils/sendMail";
 import NotificationModel from "../models/notificationModel";
+import axios from "axios";
 
 export const uploadCourse = catchAsyncErrors(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -396,6 +397,23 @@ export const deleteCourse = catchAsyncErrors(async (req: Request, res: Response,
             success: true,
             message: "Course deleted successfully"
         });
+    } catch (error: any) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+});
+
+export const generateVideoUrl = catchAsyncErrors(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { videoId } = req.body;
+        const response = await axios.post(`https://dev.vdocipher.com/api/videos/${videoId}/otp`,
+            {ttl:300}, {
+            headers: {
+                'Authorization': `Apisecret ${process.env.VDOCIPHER_API_SECRET}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        res.json(response.data);
     } catch (error: any) {
         return next(new ErrorHandler(error.message, 400));
     }
