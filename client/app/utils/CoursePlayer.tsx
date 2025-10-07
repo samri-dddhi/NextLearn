@@ -24,7 +24,7 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
   return (
     <div style={{ paddingTop: "56%", position: "relative" }}>
       <iframe
-        src="https://player.vdocipher.com/v2/?otp=20160313versASE3232rhzukP5S1PEX4t1HioOvqA0lrVo43LqOit32PDC6fLDqP&playbackInfo=eyJ2aWRlb0lkIjoiNzY2Y2FjYTdlMjZiNDVmNGJiMGVlNmM4MGJiMDIyMWMifQ=="
+        src={`https://player.vdocipher.com/v2/?otp=${videoData.otp}&playbackInfo=${videoData.playbackInfo}&player=lmWspwAWpVGgpEjS`}
         style={{
           border: 0,
           maxWidth: "100%",

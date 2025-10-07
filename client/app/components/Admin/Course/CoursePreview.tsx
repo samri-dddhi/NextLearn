@@ -120,7 +120,7 @@ const CoursePreview: FC<Props> = ({
           <h1 className="text-[25px] font-Poppins font-[600]">
             Course Details
           </h1>
-          <p className="text-[18px] mt-[20px] whitespace-pre-line w-full overflow-hidden">
+          <p className="text-[18px] mt-[10px] whitespace-pre-line w-full overflow-hidden">
 {courseData?.description}
           </p>
         </div>

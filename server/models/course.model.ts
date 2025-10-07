@@ -88,7 +88,7 @@ const courseSchema = new Schema<ICourse>({
     },
     tags: { type: String, required: true },
     level: { type: String, required: true },
-    demoUrl: { type: String, required: true },
+    demoUrl: { type: String},
     benefits: [{ title: String }],
     prerequisites: [{ title: String }],
     reviews: [reviewSchema],

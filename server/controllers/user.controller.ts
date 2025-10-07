@@ -213,11 +213,7 @@ export const updateAccessToken = catchAsyncErrors(async (req: Request, res: Resp
          res.cookie("refreshToken", refreshToken, refreshTokenOptions);
 
          await redis.set(user.id, JSON.stringify(user), 'EX', 60 * 60 * 24 * 7); // Set user in Redis with 7 days expiration
-
-         res.status(200).json({
-            status: "success",
-            accessToken, 
-        });
+next();
     } catch (error:any) {
         return next(new ErrorHandler(error.message, 400));
     }
