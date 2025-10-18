@@ -163,9 +163,9 @@ const CourseInformation: FC<Props> = ({
               name=""
               required
               id="demo-video"
-              value={courseInfo.demoVideo}
+              value={courseInfo.demoUrl}
               onChange={(e) =>
-                setCourseInfo({ ...courseInfo, demoVideo: e.target.value })
+                setCourseInfo({ ...courseInfo, demoUrl: e.target.value })
               }
               placeholder="e.g. https://www.youtube.com/watch?v=12345"
               className={`${styles.input}`}

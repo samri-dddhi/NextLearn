@@ -13,9 +13,11 @@ type Props = {
   isTeam: boolean;
 };
 
-const AllUsers: FC<Props> = ({ isTeam }: Props) => {
+const AllCourses: FC<Props> = ({ isTeam }: Props) => {
   const { theme } = useTheme();
   const [searchTerm, setSearchTerm] = useState("");
+    const [userId, setUserId] = useState("");
+  const [open, setOpen] = useState(false);
   const [active, setActive] = useState(false);
   const { data, error, isLoading } = useGetAllUsersQuery({});
 
@@ -108,17 +110,22 @@ const AllUsers: FC<Props> = ({ isTeam }: Props) => {
       sortable: false,
       headerAlign: "center" as const,
       align: "center" as const,
-      renderCell: () => (
-        <div className="flex items-center space-x-4 mt-3 ml-11">
+      renderCell: (params:any) => (
+        <div className="flex items-center space-x-1 mt-3 ml-5">
+         <Button
+        onClick={() => {
+            setOpen(!open);
+            setUserId(params.row.id);
+        }}
+        >
+            <AiOutlineDelete size={20} className="text-red-600" />
+       </Button>
           <a
             href={`mailto:${'params.row.email'}`}
           >
-            <AiOutlineDelete size={16} />
-          </a>
-          <a
-            href={`mailto:${'params.row.email'}`}
-          >
-            <AiOutlineMail size={16} />
+            <AiOutlineMail size={16} 
+            className="text-blue-600"
+            />
           </a>
         </div>
       ),
@@ -248,4 +255,4 @@ const AllUsers: FC<Props> = ({ isTeam }: Props) => {
 };
 
 
-export default AllUsers;
+export default AllCourses;
