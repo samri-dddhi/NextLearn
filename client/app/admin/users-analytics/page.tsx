@@ -2,9 +2,8 @@
 import React from "react";
 import Heading from "../../utils/Heading";
 import AdminSidebar from "../../components/Admin/Sidebar/AdminSidebar";
-// import AdminProtected from '../../hooks/adminProtected'
 import DashboardHeader from "../../components/Admin/DashboardHeader";
-import CourseAnalytics from "../../components/Admin/Analytics/CourseAnalytics";
+import UserAnalytics from "../../components/Admin/Analytics/UserAnalytics";
 
 type Props = {};
 
@@ -21,8 +20,8 @@ const page = (props: Props) => {
           <AdminSidebar />
         </div>
         <div className="w-[84%]">
-          <DashboardHeader />
-          <CourseAnalytics />
+          <DashboardHeader/>
+          <UserAnalytics />
         </div>
       </div>
     </div>
