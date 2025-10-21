@@ -322,6 +322,27 @@ const CourseContent: FC<Props> = ({
                         </p>
                       )}
                     </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Video Length (in minutes)
+                      </label>
+                      <input
+                        type="number"
+                        placeholder="Enter video length in minutes"
+                        className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all duration-200"
+                        value={item.videoLength || ""}
+                        onChange={(e) => {
+                          const updatedData = [...courseContentData];
+                          updatedData[index].videoLength = e.target.value;
+                          setCourseContentData(updatedData);
+                        }}
+                      />
+                      {!item.videoLength && (
+                        <p className="text-xs text-red-500 mt-1">
+                          Video Length is required
+                        </p>
+                      )}
+                    </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

@@ -33,6 +33,7 @@ const CreateCourse = (props: Props) => {
     estimatedPrice: "",
     tags: "",
     level: "",
+    categories: "",
     demoUrl: "",
     thumbnail: "",
   });
@@ -43,7 +44,8 @@ const CreateCourse = (props: Props) => {
       videoUrl: "",
       title: "",
       description: "",
-      videoSection: "",
+      videoSection: "Untitled Section",
+      videoLength: "",
       link: [
         {
           title: "",
@@ -68,6 +70,7 @@ const CreateCourse = (props: Props) => {
         videoUrl: courseContent.videoUrl,
         title: courseContent.title,
         description: courseContent.description,
+        videoLength: courseContent.videoLength,
         videoSection: courseContent.videoSection,
         link: courseContent.link.map((link) => ({
           title: link.title,

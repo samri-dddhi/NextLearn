@@ -1,5 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState , useEffect } from "react";
 import { styles } from "@/app/styles/style";
+import { useGetHeroDataQuery } from "../../../../redux/features/layout/layoutApi";
+
 
 type Props = {
   courseInfo: any;
@@ -15,6 +17,13 @@ const CourseInformation: FC<Props> = ({
   setActive,
 }) => {
   const [dragging, setDragging] = useState(false);
+  const { data } = useGetHeroDataQuery("Categories", {});
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    if (data) {
+      setCategories(data?.layout?.categories);
+    }
+  }, [data]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -122,7 +131,8 @@ const CourseInformation: FC<Props> = ({
           </div>
         </div>
         <br />
-        <div>
+         <div className="w-full flex justify-between">
+          <div className="w-[45%]">
           <label className={`${styles.label}`}>
             Course Tags (separated by commas)
           </label>
@@ -138,7 +148,22 @@ const CourseInformation: FC<Props> = ({
             placeholder="e.g. React, JavaScript"
             className={`${styles.input}`}
           />
+          </div>
+          <div className="w-[45%]">
+            <label className={`${styles.label}`}>Course Categories</label>
+           <select name="" id="" className={`${styles.input} dark:text-black` } value={courseInfo.category} onChange={(e) => setCourseInfo({ ...courseInfo, category: e.target.value })}>
+            <option value="">Select Category</option>
+            {
+              categories.map((category: any) => (
+                <option key={category._id} value={category._id}>
+                  {category.title}
+                </option>
+            ))}
+           </select>
+          </div>
         </div>
+        <br />
+        <div className="w-full flex justify-between"></div>
         <br />
         <div className="w-full flex justify-between">
           <div className="w-[45%]">
