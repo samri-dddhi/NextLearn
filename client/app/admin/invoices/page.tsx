@@ -1,16 +1,16 @@
 'use client'
 import React from 'react'
-import Heading from '../utils/Heading'
-import AdminSidebar from '../components/Admin/Sidebar/AdminSidebar'
-import AdminProtected from '../hooks/adminProtected'
-import DashboardHero from '../components/Admin/DashboardHero'
+import Heading from '../../utils/Heading'
+import AdminSidebar from '../../components/Admin/Sidebar/AdminSidebar'
+import DashboardHero from '../../components/Admin/DashboardHero'
+import AllInvoices from '../../../app/components/Admin/Order/AllInvoices'
+
 
 type Props = {}
 
 const page = (props: Props) => {
   return (
     <div>
-       <AdminProtected>
          <Heading
     title={`Admin Panel - NextLearn`}
     description="Manage users, courses, and content on the NextLearn platform."
@@ -21,11 +21,11 @@ const page = (props: Props) => {
     <AdminSidebar />
     </div>
     <div className='w-[84%]'>
-      <DashboardHero isDashboard={true} />
+      <DashboardHero />
+      <AllInvoices />
     </div>
 
 </div>
-        </AdminProtected>
     </div>
   )
 }
