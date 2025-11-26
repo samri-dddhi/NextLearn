@@ -81,7 +81,7 @@ const courseDataSchema = new Schema<ICourseData>({
 const courseSchema = new Schema<ICourse>({
     name: { type: String, required: true },
     description: { type: String, required: true },
-    categories: { type: String, required: true },
+    categories: { type: String},
     price: { type: Number, required: true },
     estimatedPrice: { type: Number,},
     thumbnail: {

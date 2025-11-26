@@ -81,19 +81,21 @@
 
 "use client";
 
+import { useGetHeroDataQuery } from "@/redux/features/layout/layoutApi";
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
 import { BiSearch } from "react-icons/bi";
 
 const Hero: FC = () => {
+  const {data,refetch} = useGetHeroDataQuery("Banner",{});
   return (
     <div className="relative w-full 1000px:flex items-center">
       {/* Hero Image Section (left) */}
      {/* <div className="absolute top-[100px] 1000px:top-[unset] left-0 1500px:h-[560px] 1500px:w-[560px] 1100px:h-[470px] 1100px:w-[470px] w-[38vh] h-[38vh] hero_animation rounded-full" /> */}
       <div className="1000px:w-[50%] 1000px:h-[70%] flex 1000px:min-h-screen items-center justify-end pt-[70px] 1000px:pt-[0] z-10 ">
         <Image
-          src="/hero-image.png" 
+          src={"/hero-image.png"} 
           alt="Hero"
           width={800}
           height={800}
@@ -104,13 +106,13 @@ const Hero: FC = () => {
       {/* Hero Content (right) */}
       <div className="1000px:w-[60%] flex flex-col items-center 1000px:mt-0 text-center 1000px:text-left mt-[150px]">
         <h2 className="dark:text-white text-[#000000c7] text-[26px] px-3 w-full 1000px:text-[56px] font- font-Josefin py-2 1000px:leading-[62px] 1500px:w-[60%]">
-          Empowering Your Online Learning Experience
+         {data?.layout?.banner?.title}
         </h2>
 
         <br />
 
         <p className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font- text-[16px] 1500px:!w-[55%] 1100px:!w-[78%]">
-          Explore 40,000+ expert-led courses and join over 500,000 learners building their future. Discover your perfect course now!
+          {data?.layout?.banner?.subtitle}
         </p>
 
         <br />
