@@ -1,5 +1,5 @@
-import { styles } from "@/app/styles/style";
-import CoursePlayer from "@/app/utils/CoursePlayer";
+import { styles } from "../../../app/styles/style";
+import CoursePlayer from "../../../app/utils/CoursePlayer";
 import { Link } from "lucide-react";
 import React from "react";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
